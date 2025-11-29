@@ -871,10 +871,9 @@ class MaterialScrollBehavior extends ScrollBehavior {
   Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     // When modifying this function, consider modifying the implementation in
     // the base class ScrollBehavior as well.
-    final AndroidOverscrollIndicator indicator =
-        Theme.of(context).useMaterial3
-            ? AndroidOverscrollIndicator.stretch
-            : AndroidOverscrollIndicator.glow;
+    final AndroidOverscrollIndicator indicator = Theme.of(context).useMaterial3
+        ? AndroidOverscrollIndicator.stretch
+        : AndroidOverscrollIndicator.glow;
     switch (getPlatform(context)) {
       case TargetPlatform.iOS:
       case TargetPlatform.linux:
@@ -936,12 +935,20 @@ class _MaterialAppState extends State<MaterialApp> {
   Widget _exitWidgetSelectionButtonBuilder(
     BuildContext context, {
     required VoidCallback onPressed,
+<<<<<<< HEAD
     required String semanticLabel,
+=======
+    required String semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     required GlobalKey key,
   }) {
     return _MaterialInspectorButton.filled(
       onPressed: onPressed,
+<<<<<<< HEAD
       semanticLabel: semanticLabel,
+=======
+      semanticsLabel: semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
       icon: Icons.close,
       isDarkTheme: _isDarkTheme(context),
       buttonKey: key,
@@ -951,6 +958,7 @@ class _MaterialAppState extends State<MaterialApp> {
   Widget _moveExitWidgetSelectionButtonBuilder(
     BuildContext context, {
     required VoidCallback onPressed,
+<<<<<<< HEAD
     required String semanticLabel,
     bool isLeftAligned = true,
   }) {
@@ -958,6 +966,15 @@ class _MaterialAppState extends State<MaterialApp> {
       onPressed: onPressed,
       semanticLabel: semanticLabel,
       icon: isLeftAligned ? Icons.arrow_right : Icons.arrow_left,
+=======
+    required String semanticsLabel,
+    bool usesDefaultAlignment = true,
+  }) {
+    return _MaterialInspectorButton.iconOnly(
+      onPressed: onPressed,
+      semanticsLabel: semanticsLabel,
+      icon: usesDefaultAlignment ? Icons.arrow_right : Icons.arrow_left,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
       isDarkTheme: _isDarkTheme(context),
     );
   }
@@ -965,15 +982,26 @@ class _MaterialAppState extends State<MaterialApp> {
   Widget _tapBehaviorButtonBuilder(
     BuildContext context, {
     required VoidCallback onPressed,
+<<<<<<< HEAD
     required String semanticLabel,
+=======
+    required String semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     required bool selectionOnTapEnabled,
   }) {
     return _MaterialInspectorButton.toggle(
       onPressed: onPressed,
+<<<<<<< HEAD
       semanticLabel: semanticLabel,
       // This icon is also used for the Cupertino-styled button and for DevTools.
       // It should be updated in all 3 places if changed.
       icon: CupertinoIcons.cursor_rays,
+=======
+      semanticsLabel: semanticsLabel,
+      // This unicode icon is also used for the Cupertino-styled button and for
+      // DevTools. It should be updated in all 3 places if changed.
+      icon: const IconData(0x1F74A),
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
       isDarkTheme: _isDarkTheme(context),
       toggledOn: selectionOnTapEnabled,
     );
@@ -1172,7 +1200,11 @@ class _MaterialAppState extends State<MaterialApp> {
 class _MaterialInspectorButton extends InspectorButton {
   const _MaterialInspectorButton.filled({
     required super.onPressed,
+<<<<<<< HEAD
     required super.semanticLabel,
+=======
+    required super.semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     required super.icon,
     required this.isDarkTheme,
     super.buttonKey,
@@ -1180,7 +1212,11 @@ class _MaterialInspectorButton extends InspectorButton {
 
   const _MaterialInspectorButton.toggle({
     required super.onPressed,
+<<<<<<< HEAD
     required super.semanticLabel,
+=======
+    required super.semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     required super.icon,
     required this.isDarkTheme,
     super.toggledOn,
@@ -1188,7 +1224,11 @@ class _MaterialInspectorButton extends InspectorButton {
 
   const _MaterialInspectorButton.iconOnly({
     required super.onPressed,
+<<<<<<< HEAD
     required super.semanticLabel,
+=======
+    required super.semanticsLabel,
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     required super.icon,
     required this.isDarkTheme,
   }) : super.iconOnly();
@@ -1210,7 +1250,11 @@ class _MaterialInspectorButton extends InspectorButton {
       padding: _buttonPadding,
       constraints: _buttonConstraints,
       style: _selectionButtonsIconStyle(context),
+<<<<<<< HEAD
       icon: Icon(icon, semanticLabel: semanticLabel),
+=======
+      icon: Icon(icon, semanticLabel: semanticsLabel),
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
     );
   }
 
@@ -1221,14 +1265,31 @@ class _MaterialInspectorButton extends InspectorButton {
     return IconButton.styleFrom(
       foregroundColor: foreground,
       backgroundColor: background,
+<<<<<<< HEAD
       side:
           variant == InspectorButtonVariant.toggle && !toggledOn!
               ? BorderSide(color: foreground)
               : null,
+=======
+      side: _borderSide(color: foreground),
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
       tapTargetSize: MaterialTapTargetSize.padded,
     );
   }
 
+<<<<<<< HEAD
+=======
+  BorderSide? _borderSide({required Color color}) {
+    switch (variant) {
+      case InspectorButtonVariant.filled:
+      case InspectorButtonVariant.iconOnly:
+        return null;
+      case InspectorButtonVariant.toggle:
+        return toggledOn == false ? BorderSide(color: color) : null;
+    }
+  }
+
+>>>>>>> 19074d12f7eaf6a8180cd4036a430c1d76de904e
   @override
   Color foregroundColor(BuildContext context) {
     final Color primaryColor = _primaryColor(context);
